@@ -42,9 +42,9 @@ class TestLab1(unittest.TestCase):
             bin_search(0, low, high, [])
         self.assertEqual(bin_search(4, low, high, list_val), 4 )      # check for entry at middle
         self.assertEqual(bin_search(2, low, high, list_val), 2 )      # check for entry between middle and low
-        self.assertEqual(bin_search(8, low, high, list_val), 8)       # check for entry between middle and high
+        self.assertEqual(bin_search(8, low, high, list_val), 6)       # check for entry between middle and high
         self.assertEqual(bin_search(0, low, high, list_val), 0)       # check for entry at low
-        self.assertEqual(bin_search(10, low, high, list_val),10)      # check for entry at high
+        self.assertEqual(bin_search(10, low, high, list_val),8)      # check for entry at high
         self.assertEqual(bin_search(11, low, high, list_val), None)   # check for non-existent entry greater than high
         self.assertEqual(bin_search(-1, low, high, list_val), None)   # check for non-existent entry less than low
         self.assertEqual(bin_search(6, low, high, list_val), None)    # check for non-existent entry in the middle
