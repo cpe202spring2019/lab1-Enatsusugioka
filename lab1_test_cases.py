@@ -7,8 +7,8 @@ class TestLab1(unittest.TestCase):
     def test_max_list_iter(self):
         """tests max_list_iter in lab1.py"""
 
-        testlist1 = []
-        with self.assertRaises(ValueError):  # used to check for exception
+        testlist1 = None
+        with self.assertRaises(ValueError):               # used to check for exception
             max_list_iter(testlist1)
 
         testlist2 = [-3]
@@ -25,10 +25,14 @@ class TestLab1(unittest.TestCase):
         self.assertEqual(max_list_iter(testlist6), -1)    # check for lists with negative numbers
         testlist7 = [1, 2, 5, 4, 5]
         self.assertEqual(max_list_iter(testlist7), 5)     # check for lists with duplicates max values
+        
+        testlist8 = []
+        self.assertEqual(max_list_iter(testlist8), None)  # check for empty list
 
     def test_reverse_rec(self):
-        with self.assertRaises(ValueError):                  # check for empty list
-            reverse_rec([])
+        with self.assertRaises(ValueError):                  # check for exception
+            reverse_rec(None)
+        self.assertEqual(reverse_rec([]), None)              # check for empty list
         self.assertEqual(reverse_rec([-1]), [-1])            # check for list with one entry
         self.assertEqual(reverse_rec([0, 5]), [5, 0])
         self.assertEqual(reverse_rec([1, 2, 3]), [3, 2, 1])  # check for regular list
@@ -38,16 +42,17 @@ class TestLab1(unittest.TestCase):
         low = 0
         high = len(list_val)-1
 
-        with self.assertRaises(ValueError):                           # check for empty list
-            bin_search(0, low, high, [])
-        self.assertEqual(bin_search(4, low, high, list_val), 4 )      # check for entry at middle
-        self.assertEqual(bin_search(2, low, high, list_val), 2 )      # check for entry between middle and low
-        self.assertEqual(bin_search(8, low, high, list_val), 6)       # check for entry between middle and high
-        self.assertEqual(bin_search(0, low, high, list_val), 0)       # check for entry at low
+        with self.assertRaises(ValueError):                          # check for exception
+            bin_search(0, low, high, None)
+        self.assertEqual(bin_search(0, low, high, []), None)         # check for empty list
+        self.assertEqual(bin_search(4, low, high, list_val), 4)      # check for entry at middle
+        self.assertEqual(bin_search(2, low, high, list_val), 2)      # check for entry between middle and low
+        self.assertEqual(bin_search(8, low, high, list_val), 6)      # check for entry between middle and high
+        self.assertEqual(bin_search(0, low, high, list_val), 0)      # check for entry at low
         self.assertEqual(bin_search(10, low, high, list_val),8)      # check for entry at high
-        self.assertEqual(bin_search(11, low, high, list_val), None)   # check for non-existent entry greater than high
-        self.assertEqual(bin_search(-1, low, high, list_val), None)   # check for non-existent entry less than low
-        self.assertEqual(bin_search(6, low, high, list_val), None)    # check for non-existent entry in the middle
+        self.assertEqual(bin_search(11, low, high, list_val), None)  # check for non-existent entry greater than high
+        self.assertEqual(bin_search(-1, low, high, list_val), None)  # check for non-existent entry less than low
+        self.assertEqual(bin_search(6, low, high, list_val), None)   # check for non-existent entry in the middle
 
 
 if __name__ == "__main__":
